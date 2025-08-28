@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarvis Voice Assistant - Presentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #2d2b55);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            margin-top: 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .slides-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            height: 500px;
+        }
+        
+        .slide {
+            flex: 0 0 auto;
+            width: 100%;
+            scroll-snap-align: start;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow-y: auto;
+        }
+        
+        .slide-content {
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .slide-number {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 1.2rem;
+            opacity: 0.7;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: #6ccefc;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin: 15px 0;
+            color: #6ccefc;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .feature-list {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .feature-list li {
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+        
+        .code-container {
+            background: #2d2b55;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .command-example {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid #6ccefc;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: left;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn {
+            background: linear-gradient(to right, #0f2027, #203a43);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 0 10px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            background: linear-gradient(to right, #203a43, #2c5364);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tech-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 25px 0;
+            font-size: 2.5rem;
+        }
+        
+        .tech-icons i {
+            color: #6ccefc;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .slide {
+                padding: 20px;
+            }
+            
+            .tech-icons {
+                font-size: 2rem;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Jarvis Voice Assistant</h1>
+            <p>Python-Powered Voice Control System</p>
+        </header>
+        
+        <div class="slides-container">
+            <!-- Slide 1 -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>Introduction to Jarvis</h2>
+                    <p>Jarvis is a voice-controlled assistant built with Python that can perform various tasks through voice commands.</p>
+                    <div class="tech-icons">
+                        <i class="fab fa-python"></i>
+                        <i class="fas fa-microphone"></i>
+                        <i class="fas fa-robot"></i>
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <p>It uses speech recognition, text-to-speech, and web automation to interact with the user and perform tasks.</p>
+                </div>
+                <div class="slide-number">1/6</div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>Key Features</h2>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Voice activation with "Jarvis" wake word</li>
+                        <li><i class="fas fa-check-circle"></i> Web browser control (open Google, YouTube, etc.)</li>
+                        <li><i class="fas fa-check-circle"></i> Music playback from YouTube</li>
+                        <li><i class="fas fa-check-circle"></i> Integration with Google's Gemini AI for intelligent responses</li>
+                        <li><i class="fas fa-check-circle"></i> Text-to-speech feedback</li>
+                        <li><i class="fas fa-check-circle"></i> Continuous listening mode</li>
+                    </ul>
+                </div>
+                <div class="slide-number">2/6</div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>Technical Architecture</h2>
+                    <div class="tech-icons">
+                        <i class="fab fa-google"></i>
+                        <i class="fas fa-microphone-alt"></i>
+                        <i class="fas fa-music"></i>
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <p>Jarvis uses several Python libraries and APIs:</p>
+                    <ul class="feature-list">
+                        <li><strong>SpeechRecognition</strong> - For converting speech to text</li>
+                        <li><strong>pyttsx3</strong> - For text-to-speech conversion</li>
+                        <li><strong>Webbrowser</strong> - For opening web pages</li>
+                        <li><strong>Requests</strong> - For API calls to Gemini</li>
+                        <li><strong>Custom music module</strong> - For handling music requests</li>
+                    </ul>
+                </div>
+                <div class="slide-number">3/6</div>
+            </div>
+            
+            <!-- Slide 4 -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>Code Structure</h2>
+                    <p>The main components of the code:</p>
+                    <div class="code-container">
+                        <pre><code># Core functions
+def speak(text):
+    # Text-to-speech output
+
+def query_gemini(prompt):
+    # Get responses from Gemini AI
+
+def processcommand(cmd):
+    # Process voice commands
+    
+# Main loop
+if __name__ == "__main__":
+    # Continuous listening for "Jarvis" wake word
+    # Command recognition and processing</code></pre>
+                    </div>
+                    <p>The assistant continuously listens for the wake word "Jarvis" and then processes subsequent commands.</p>
+                </div>
+                <div class="slide-number">4/6</div>
+            </div>
+            
+            <!-- Slide 5 -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>Example Commands</h2>
+                    <p>Jarvis responds to various voice commands:</p>
+                    
+                    <div class="command-example">
+                        <p><strong>"Open Google"</strong> - Opens Google in the default web browser</p>
+                    </div>
+                    
+                    <div class="command-example">
+                        <p><strong>"Open YouTube"</strong> - Opens YouTube in the default web browser</p>
+                    </div>
+                    
+                    <div class="command-example">
+                        <p><strong>"Play [song name]"</strong> - Plays the requested song on YouTube</p>
+                    </div>
+                    
+                    <div class="command-example">
+                        <p><strong>Any other question</strong> - Queries Gemini AI for intelligent responses</p>
+                    </div>
+                </div>
+                <div class="slide-number">5/6</div>
+            </div>
+            
+            <!-- Slide 6 -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>Future Enhancements</h2>
+                    <p>Potential improvements for Jarvis:</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-rocket"></i> Integration with smart home devices</li>
+                        <li><i class="fas fa-calendar"></i> Calendar and schedule management</li>
+                        <li><i class="fas fa-envelope"></i> Email reading and composition</li>
+                        <li><i class="fas fa-thermometer-half"></i> Weather information and forecasts</li>
+                        <li><i class="fas fa-newspaper"></i> News briefings</li>
+                        <li><i class="fas fa-lightbulb"></i> Home automation control</li>
+                    </ul>
+                    <p>Jarvis can be extended with additional modules and APIs for more functionality.</p>
+                </div>
+                <div class="slide-number">6/6</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="btn" onclick="prevSlide()"><i class="fas fa-arrow-left"></i> Previous</button>
+            <button class="btn" onclick="nextSlide()">Next <i class="fas fa-arrow-right"></i></button>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Created for Jarvis Voice Assistant Project | HTML Presentation</p>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        function showSlide(n) {
+            const slidesContainer = document.querySelector('.slides-container');
+            slidesContainer.scrollLeft = n * slidesContainer.offsetWidth;
+            currentSlide = n;
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+        
+        // Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+        
+        // Add swipe support for touch devices
+        const slidesContainer = document.querySelector('.slides-container');
+        let startX = 0;
+        let scrollLeft = 0;
+        
+        slidesContainer.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].pageX - slidesContainer.offsetLeft;
+            scrollLeft = slidesContainer.scrollLeft;
+        });
+        
+        slidesContainer.addEventListener('touchmove', (e) => {
+            if (e.touches.length !== 1) return;
+            const x = e.touches[0].pageX - slidesContainer.offsetLeft;
+            const walk = (x - startX) * 2;
+            slidesContainer.scrollLeft = scrollLeft - walk;
+        });
+    </script>
+</body>
+</html>
