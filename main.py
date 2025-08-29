@@ -72,8 +72,8 @@ def processcommand(c):
     
         
 if __name__ == "__main__":
-    speak("Jarvis AI Assistant Activated")
-    print("System Ready. Say 'Jarvis' to activate.")
+    speak("Friday AI Assistant Activated")
+    print("System Ready. Say 'Friday' to activate.")
     while True:
         
         print("recognizing....")
@@ -84,21 +84,21 @@ if __name__ == "__main__":
                 re.adjust_for_ambient_noise(source)
                 audio = re.listen(source, timeout=5,phrase_time_limit=5)
             word = re.recognize_google(audio)
-            if "jarvis" in word.lower():
-                speak("Ya")
-                
-                with sr.Microphone() as source:
-                    print("jarvis active.....")
-                    audio = re.listen(source, timeout=8,phrase_time_limit=8)
-                cmd = re.recognize_google(audio)
-                 
-                processcommand(cmd) 
-            
-            elif "stop" in word.lower():
+            if "stop" in word.lower():
                 print("Thanks!")
                 print("Exit!r")
                 speak("Goodbye!") 
                 break
+            
+            elif "friday" in word.lower():
+                speak("Ya")
+                
+                with sr.Microphone() as source:
+                    print("Friday active.....")
+                    audio = re.listen(source, timeout=8,phrase_time_limit=8)
+                cmd = re.recognize_google(audio)
+                 
+                processcommand(cmd) 
             
         except sr.UnknownValueError:
             print("Could not understand audio")
@@ -107,4 +107,5 @@ if __name__ == "__main__":
         except Exception as e:
 
             print(e)  
+
 
