@@ -26,10 +26,10 @@ def query_gemini(prompt):
     }
     
     try:
-        response = requests.post(url, headers=headers, json=payload)
-        response.raise_for_status()
+        responce = requests.post(url, headers=headers, json=payload)
+        responce.raise_for_status()
         # Extract the response text from the JSON
-        return response.json()['candidates'][0]['content']['parts'][0]['text']
+        return responce.json()['candidates'][0]['content']['parts'][0]['text']
     except Exception as e:
         return f"Sorry, an error occurred: {e}"
 
@@ -105,4 +105,5 @@ if __name__ == "__main__":
         except sr.RequestError as e:
             print(f"Could not request results; {e}")
         except Exception as e:
+
             print(e)  
