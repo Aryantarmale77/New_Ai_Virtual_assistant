@@ -82,14 +82,14 @@ if __name__ == "__main__":
             with sr.Microphone() as source:
                 print("Listening.....")
                 re.adjust_for_ambient_noise(source)
-                audio = re.listen(source)
+                audio = re.listen(source, timeout=5,phrase_time_limit=5)
             word = re.recognize_google(audio)
             if "jarvis" in word.lower():
                 speak("Ya")
                 
                 with sr.Microphone() as source:
                     print("jarvis active.....")
-                    audio = re.listen(source)
+                    audio = re.listen(source, timeout=8,phrase_time_limit=8)
                 cmd = re.recognize_google(audio)
                  
                 processcommand(cmd) 
@@ -107,3 +107,4 @@ if __name__ == "__main__":
         except Exception as e:
 
             print(e)  
+
